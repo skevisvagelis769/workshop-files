@@ -1,0 +1,28 @@
+services:
+  prometheus:
+    container_name: prometheus_test
+    image: prom/prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - "./prometheus:/etc/prometheus"
+    restart: unless-stopped
+    networks:
+      - grafana_test_net
+
+  node_exporter:
+    container_name: node_exporter
+    image: prom/node-exporter
+    command:
+      - '--path.rootfs=/host'
+    ports:
+      - "9101:9100"
+    volumes:
+      - '/:/host:ro,rslave'
+    networks:
+      - grafana_test_net
+
+networks:
+  grafana_test_net:
+    external: true
+    name: grafana_test_net

@@ -1,0 +1,12 @@
+services:
+  grafana:
+    container_name: grafana_test
+    image: grafana/grafana
+    ports:
+      - "5183:3000"
+    networks:
+      - grafana_test_net
+
+networks:
+  grafana_test_net:
+    external: true
