@@ -3,11 +3,12 @@ services:
     container_name: grafana_test
     image: grafana/grafana
     ports:
-      - "80:3000"
+      - "3000:3000"
     networks:
       - grafana_test_net
 
 networks:
   grafana_test_net:
     external: true
+
 
